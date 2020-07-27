@@ -5,6 +5,7 @@ import 'package:tamwink/admin/add_product.dart';
 import 'package:tamwink/admin/category_admin.dart';
 import 'package:tamwink/admin/product.dart';
 import 'package:tamwink/admin/search_products.dart';
+import 'package:tamwink/customer/cartmodel.dart';
 import '../auth/login_page.dart';
 import 'profile.dart';
 
@@ -16,6 +17,7 @@ class Admin extends StatefulWidget {
 }
 
 class _AdminState extends State<Admin> {
+
   Page _selectedPage = Page.dashboard;
   MaterialColor active = Colors.red;
   MaterialColor notActive = Colors.grey;
@@ -28,6 +30,7 @@ class _AdminState extends State<Admin> {
 
   TextEditingController productNameController = TextEditingController();
   TextEditingController quatityController = TextEditingController();
+  List<Product> list=List<Product>();
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +81,7 @@ class _AdminState extends State<Admin> {
                     onPressed: () {
                       showSearch(
                         context: context,
-                        delegate: ProductSearch(),
+                        delegate: ProductSearch(list:list),
                       );
                     },
                   ),
@@ -394,6 +397,18 @@ class _AdminState extends State<Admin> {
     );
 
     showDialog(context: context, builder: (_) => alert);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Firestore.instance.collection("products").getDocuments().then((querySnapshot) {
+      querySnapshot.documents.forEach((result) async {
+        print(result.data);
+        list.add(Product(id:result.documentID.toString(),category: (result.data)['category'],price:double.parse((result.data)['price']),title: (result.data)['productName'],qty:int.parse((result.data)['quantity']),review:(result.data)['review']));
+
+      });
+    });
   } //
 
 }

@@ -287,7 +287,6 @@ class _AddProductState extends State<AddProduct> {
               "price":priceController.text,
               "review":reviewController.text,
             }).then((value) async {
-          print(value.documentID);
           String fileName = 'ProductsImages/${productNameController.text}.jpg';
           print(_image);
           final uploadTask =

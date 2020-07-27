@@ -4,6 +4,8 @@ import 'package:credit_card/credit_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'maincustomer.dart';
+
 
 class Payment extends StatefulWidget {
   static const routePay= '/payment-screen';
@@ -35,7 +37,13 @@ class _PaymentState extends State<Payment> {
 
                 ),
                 new OutlineButton(
-                  onPressed: null,
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MyHomePage()));
+                  },
                   child: Text(
                     'تأكيد عملية الدفع',
                     style: TextStyle(color: Colors.orange[900]),

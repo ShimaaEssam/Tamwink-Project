@@ -2,6 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'maincustomer.dart';
+
 class Cash extends StatelessWidget {
   static const routeCash= '/cash-screen';
   @override
@@ -43,6 +45,11 @@ class Cash extends StatelessWidget {
                   ),
                   FlatButton(
                     onPressed: (){
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  MyHomePage()));
 
                     },
                     textColor:  Colors.white,

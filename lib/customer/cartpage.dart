@@ -58,11 +58,11 @@ class _CartPageState extends State<CartPage> {
                                   ),
                               title: Text(model.cart[index].title),
                               subtitle: Text(
-                                  model.cart[index].qty.toString() +
+                                 "1" +
                                   " x " +
                                   model.cart[index].price.toString()+
                                   " = " +
-                                  (model.cart[index].qty *
+                                  (1*
                                       model.cart[index].price)
                                       .toString(),
                                 textAlign: TextAlign.end,
@@ -116,10 +116,7 @@ class _CartPageState extends State<CartPage> {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                            ScopedModel.of<CartModel>(context,
-                                    rebuildOnChange: true)
-                                .totalCartValue
-                                .toString() +
+                    "100.0" +
                             "جنية",
 
                     style: TextStyle(
@@ -183,10 +180,7 @@ class _CartPageState extends State<CartPage> {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                            ScopedModel.of<CartModel>(context,
-                                    rebuildOnChange: true)
-                                .totalCartValue
-                                .toString() +
+                    "100.0" +
                             "جنية",
 
                     style: TextStyle(
